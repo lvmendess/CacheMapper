@@ -8,7 +8,7 @@ public class Main {
         File diretorio = new File("testes\\");
         File[] arquivos = diretorio.listFiles();
         LeitorTxt leitorTxt;
-        //EscritorTxt escritor = new EscritorTxt();
+        EscritorTxt escritor = new EscritorTxt();
         ArrayList<String[]> linhas = new ArrayList<>();
     
 
@@ -23,7 +23,7 @@ public class Main {
             }
             try {
                 CacheMapper cm = new CacheMapper(linhas);
-                //escritor.write(null, arquivo.getName());
+                escritor.write(cm.getResult(), arquivo.getName());
                 
             }catch(NullPointerException e){
                 System.out.println(-1);

@@ -1,16 +1,17 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 
 public class CacheMapper {
     private long n;//tamanho da memória
     private int p;//num de palavras no bloco
     private int l;//número total de linhas da memória cache
-    private int v;// quantidade de vias (linhas  no conjunto)
+    private int v;// quantidade de vias (linhas no conjunto)
     private final int wordSize = 4;//tamanho da palavra em bytes
     private String[] e;//endereços de memória
-    private int cacheHit = 0, cacheMiss = 0;
+    private int cacheHit = 0;
+    private int cacheMiss = 0;
     private HashSet<Integer> cache = new HashSet<>();
+    private ArrayList<String> result = new ArrayList<>();
 
     public CacheMapper(ArrayList<String[]> linhas) {
         this.n = StringToInt(linhas.get(0)[0]);
@@ -22,13 +23,26 @@ public class CacheMapper {
     }
 
     public void initialize(){
-        System.out.println(dataBitSize(getBlockSize()));//linha 1
-        System.out.println(dataBitSize(getSetAmount()));//linha 2
-        System.out.println(getTagBitSize());//linha 3
+        result.add(IntToString(dataBitSize(getBlockSize())));//linha 1
+        result.add(IntToString(dataBitSize(getSetAmount())));//linha 2
+        result.add(IntToString(getTagBitSize()));//linha 3
         cacheReader();
-        //System.out.println(Arrays.toString(lineGenerator(e[0])));
-        System.out.println(cacheMiss);//linha 4
-        System.out.println(cacheHit);//linha 5
+        result.add(IntToString(cacheMiss));//linha 4
+        result.add(IntToString(cacheHit));//linha 5
+    }
+
+    public ArrayList<String> getResult(){
+        return result;
+    }
+
+    public String IntToString(int number){
+        String s = null;
+        try {
+            s = Integer.toString(number);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number (IntToString)");
+        }
+        return s;
     }
 
     public int StringToInt(String s){
@@ -36,7 +50,7 @@ public class CacheMapper {
         try{
             number = Integer.parseInt(s);
         }catch(NumberFormatException e){
-            System.out.println("Invalid number");
+            System.out.println("Invalid number (StringToInt)");
         }
         return number;
     }

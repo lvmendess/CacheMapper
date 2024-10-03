@@ -23,12 +23,12 @@ public class LeitorTxt {
                 strK = new StringTokenizer(linha, " ");
                 int count = 0;
                 int x = strK.countTokens();
-                linhaFatiada = new String[x + 1];
+                linhaFatiada = new String[x];
                 while (strK.hasMoreTokens()) {
                     linhaFatiada[count] = strK.nextToken();
                     count++;
                 }
-                linhaFatiada[count] = linha;
+                //linhaFatiada[count] = linha;
             } else {
                 entradaDeDados.close();
                 strK = null;

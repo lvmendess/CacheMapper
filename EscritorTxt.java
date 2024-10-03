@@ -15,7 +15,7 @@ public class EscritorTxt {
                 str.append(string+"\n");
             }
             String w = str.toString();
-            bufferedWriter.write(w, 0, w.length());
+            bufferedWriter.write(w, 0, w.length() - 1);
             bufferedWriter.close();
         } catch (Exception e) {
             e.printStackTrace();
